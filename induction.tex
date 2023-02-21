@@ -1,0 +1,98 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=.8in]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr, multicol}
+\usepackage{float}
+\fancyhead[L]{\LARGE{Kevin Shu}}
+\fancyhead[C] {\LARGE{Induction and Restriction}}
+\fancyhead[R]{\LARGE{}}
+
+\author{Kevin Shu}
+\title{Induction and Restriction}
+
+%Set up fancy headers.
+\pagestyle{fancy}
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage[parfill]{parskip}
+
+%Define theorem formatting
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+% Declare some common abbreviations
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Hom}{\textbf{\text{Hom}}}
+\newcommand{\PP}{\textbf{P}}
+\newcommand{\SPACE}{\textbf{SPACE}}
+\newcommand{\NP}{\textbf{NP}}
+\newcommand{\SAT}{\textbf{SAT}}
+\newcommand{\pard}[2]{\frac{\partial #1}{\partial #2}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\st}{{\text{ s.t. }}}
+\newcommand{\emean}{{\tilde{e}}}
+
+\begin{document}
+Let $\Gamma_{n,d}$ be the vector space of $n$-variate polynomials of the form
+\[
+    p(x) = \sum_{i=1}^d a_i \emean_1^{d-i} \emean_i.
+\]
+
+Such a polynomial can be restricted nicely to the projective line
+\[
+    \{s\vec{1} + t z : t \in \R\},
+\]
+where $\vec{1}$ is the all 1's vector, and $z$ is a vector whose first entry is $n-1$, and all other entries are $-1$.
+
+In this case, we see that restriction of the polynomial $p$ to this line gives a linear map
+\[
+    \phi : \Gamma_{n,d} \rightarrow \R[s, t]_d,
+\]
+which we'll call the restriction map.
+
+In fact, $\phi$ maps $\Gamma_{n,d}$ into the subspace of $\R[s,t]_d$ of polynomials where the coefficient of $ts^{d-1}$ is 0, that is, it $\phi$ can be thought of as mapping to the vector space
+\[
+    H_{d, 0} = \{c_1 + \sum_{i=2}^d c_i t^{i}s^{d-i}\}.
+\]
+
+We now record some information about what this map in the standard bases and its inverse look like:
+\begin{theorem}
+    Let $p = \sum_{i=1}^d a_i \emean_1^{d-i} \emean_i$, 
+    and let $\phi(p) = q(t,s)$, where 
+    \[
+        q(t,s) = c_1s^d + \sum_{i=2}^d c_i t^{i}s^{d-i},
+    \]
+    where $c_1 = \sum_{i=1}^d a_i$, and for all other $i$,
+    \[
+        \begin{pmatrix}
+            c_2\\
+            c_3\\
+            \dots\\
+            c_d
+        \end{pmatrix}
+        = X
+        \begin{pmatrix}
+            a_2\\
+            a_3\\
+            \dots\\
+            a_d
+        \end{pmatrix},
+    \]
+    where $X_{ij} = -(i-1)\binom{i}{j}$.
+
+    Let $r(s,t) = \frac{1}{t}\frac{\partial}{\partial t} q$, then 
+    \[
+        p(x) = -q(1, -1)\tilde{e}_1 - \sum_{i=2}^d \frac{1}{i!}\left(\frac{\partial^{(i-2)}}{\partial t^{(i-2)}}r(1,-1)  \right) \emean_1^{d-i}\emean_i.
+    \]
+\end{theorem}
+
+
+
+
+
+\end{document}
